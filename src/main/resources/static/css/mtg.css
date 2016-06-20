@@ -1,0 +1,6 @@
+.icon_mountain {
+    background-image: url("/img/icon/colors.png");
+    background-size: 100px auto; /* width and height, can be %, px or whatever. */
+    background-position: -30px -100px;
+    background-repeat: no-repeat;
+}
