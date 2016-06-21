@@ -2,6 +2,8 @@ package mtg.cardCatalogue.domain;
 
 import org.springframework.data.annotation.Id;
 
+import java.util.Arrays;
+
 /**
  * Created by jbo on 27.04.2016.
  *
@@ -131,7 +133,7 @@ public class Card {
 
     @Override
     public String toString() {
-        return String.format("Card[id=%s, name='%s']", id, name);
+        return String.format("Card[id=%s, name='%s', editions='%s']", id, name, Arrays.toString(editions));
     }
 }
 

@@ -138,36 +138,9 @@ public class Edition {
     public void setHtml_url(String html_url) {
         this.html_url = html_url;
     }
-}
 
-class Price {
-    private long low;
-    private long median;
-    private long high;
-
-    public long getLow() {
-        return low;
+    @Override
+    public String toString() {
+        return String.format("Edition[id=%s, name=%s, price=%s]", set_id, set, price);
     }
-
-    public void setLow(long low) {
-        this.low = low;
-    }
-
-    public long getMedian() {
-        return median;
-    }
-
-    public void setMedian(long median) {
-        this.median = median;
-    }
-
-    public long getHigh() {
-        return high;
-    }
-
-    public void setHigh(long high) {
-        this.high = high;
-    }
-
-
 }
