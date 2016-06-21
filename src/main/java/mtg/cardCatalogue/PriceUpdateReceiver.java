@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 @Component
 public class PriceUpdateReceiver {
@@ -60,7 +61,7 @@ public class PriceUpdateReceiver {
     }
 
     public void receiveMessage(String jsonString) {
-        System.out.println("Received <" + jsonString + ">");
+        Logger.getGlobal().info("Received <" + jsonString + ">");
         try {
             PriceUpdate priceUpdate = getPriceUpdate(jsonString);
             updateCard(priceUpdate);
@@ -73,7 +74,6 @@ public class PriceUpdateReceiver {
         Card affectedCard = cardRepository.findOne(priceUpdate.getCardId());
         updatePrice(affectedCard.getEditions(), priceUpdate);
         cardRepository.save(affectedCard);
-        System.out.println("Saving..."+affectedCard);
     }
 
     private void updatePrice(Edition[] editions, PriceUpdate priceUpdate) {
