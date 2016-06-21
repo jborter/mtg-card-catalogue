@@ -5,6 +5,10 @@
     background-repeat: no-repeat;
 }
 
+.top-container {
+    margin-top: 70px;
+}
+
 .container-fluid .col-md-2 a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: inherit;
