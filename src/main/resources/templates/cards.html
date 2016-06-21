@@ -40,6 +40,10 @@
                             <td th:text="${#strings.listJoin(card.colors, ', ')}"/>
                         </tr>
                         <tr>
+                            <td>Price</td>
+                            <td th:text="${card.editions[0].price}"/>
+                        </tr>
+                        <tr>
                             <td colspan="2">
                                <img th:src="${imageHost} + ${card.editions[0].image_url}" width="223" height="311" />
                             </td>
