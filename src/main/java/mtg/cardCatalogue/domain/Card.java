@@ -60,7 +60,7 @@ public class Card {
     }
 
     public String[] getSubtypes() {
-        return subtypes;
+        return subtypes == null ? new String[0] : subtypes;
     }
 
     public void setSubtypes(String[] subtypes) {

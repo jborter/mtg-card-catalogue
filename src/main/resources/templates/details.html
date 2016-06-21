@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>MTG Details</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script th:src="@{/js/jquery-1.9.1.min.js}" />
+        <script th:src="@{/js/bootstrap.min.js}" />
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+        <link rel="stylesheet" th:href="@{/css/mtg.css}" />
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading" th:text="${card.name}"/>
+                    <div class="panel-body">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-4">Url</div>
+                                <div class="col-md-8" th:text="${card.url}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Types</div>
+                                <div class="col-md-8" th:text="${#strings.listJoin(card.types, ', ')}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Subtypes</div>
+                                <div class="col-md-8" th:text="${#strings.listJoin(card.subtypes, ', ')}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Colors</div>
+                                <div class="col-md-8" th:text="${#strings.listJoin(card.colors, ', ')}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Cmc</div>
+                                <div class="col-md-8" th:text="${card.cmc}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Cost</div>
+                                <div class="col-md-8" th:text="${card.cost}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Cost Tmp</div>
+                                <div class="col-md-8">
+                                    <div style="height: 20px; width: 20px;" class="icon_mountain"></div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Text</div>
+                                <div class="col-md-8" th:text="${card.text}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Power</div>
+                                <div class="col-md-8" th:text="${card.power}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Toughness</div>
+                                <div class="col-md-8" th:text="${card.toughness}"/>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                                <div class="col-md-4">Edition Set</div>
+                                <div class="col-md-8" th:text="${card.editions[0].set}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Edition Url</div>
+                                <div class="col-md-8" th:text="${card.editions[0].set_url}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Watermark</div>
+                                <div class="col-md-8" th:text="${card.editions[0].watermark}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Rarity</div>
+                                <div class="col-md-8" th:text="${card.editions[0].rarity}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Artist</div>
+                                <div class="col-md-8" th:text="${card.editions[0].artist}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Multiverse Id</div>
+                                <div class="col-md-8" th:text="${card.editions[0].multiverse_id}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Number</div>
+                                <div class="col-md-8" th:text="${card.editions[0].number}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Layout</div>
+                                <div class="col-md-8" th:text="${card.editions[0].layout}"/>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Price</div>
+                                <div class="col-md-8">
+                                    Low: <span th:text="${card.editions[0].price.low}"></span>
+                                    / Median: <span th:text="${card.editions[0].price.median}"></span>
+                                    / High: <span th:text="${card.editions[0].price.high}"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">Image Url</div>
+                                <div class="col-md-8" th:text="${card.editions[0].image_url}"/>
+                            </div>
+                        </div>
+                        <div class="col-md-6 image">
+                            <img th:src="${imageHost} + ${card.editions[0].image_url}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

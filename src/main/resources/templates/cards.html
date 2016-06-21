@@ -3,10 +3,10 @@
 <head>
     <title>MTG</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <script src="js/jquery-1.9.1.min.js" />
-    <script src="js/bootstrap.min.js" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/mtg.css" />
+    <script th:src="@{/js/jquery-1.9.1.min.js}" />
+    <script th:src="@{/js/bootstrap.min.js}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/mtg.css}" />
 </head>
 <body>
 <div class="container-fluid">
@@ -19,38 +19,40 @@
 <div class="container-fluid">
     <i th:each="card, status : ${cards}" th:remove="tag">
         <div class="col-md-2">
-            <div class="panel panel-default">
-                <div class="panel-heading" th:text="${card.name}"/>
-                <div class="panel-body">
-                    <table class="table">
-                        <tr>
-                            <td>Type</td>
-                            <td th:text="${#strings.listJoin(card.types, ', ')}"/>
-                        </tr>
-                        <tr>
-                            <td>Cost</td>
-                            <td th:text="${card.cost}"/>
-                        </tr>
-                        <tr>
-                            <td>Cost Tmp</td>
-                            <td><div style="height: 20px; width: 20px;" class="icon_mountain"></div></td>
-                        </tr>
-                        <tr>
-                            <td>Color</td>
-                            <td th:text="${#strings.listJoin(card.colors, ', ')}"/>
-                        </tr>
-                        <tr>
-                            <td>Price</td>
-                            <td th:text="${card.editions[0].price}"/>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                               <img th:src="${imageHost} + ${card.editions[0].image_url}" width="223" height="311" />
-                            </td>
-                        </tr>
-                    </table>
+            <a th:href="@{/mtg/{id}(id=${card.id})}">
+                <div class="panel panel-default">
+                    <div class="panel-heading" th:text="${card.name}"/>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr>
+                                <td>Type</td>
+                                <td th:text="${#strings.listJoin(card.types, ', ')}"/>
+                            </tr>
+                            <tr>
+                                <td>Cost</td>
+                                <td th:text="${card.cost}"/>
+                            </tr>
+                            <tr>
+                                <td>Cost Tmp</td>
+                                <td><div style="height: 20px; width: 20px;" class="icon_mountain"></div></td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td th:text="${#strings.listJoin(card.colors, ', ')}"/>
+                            </tr>
+                            <tr>
+                                <td>Price</td>
+                                <td th:text="${card.editions[0].price}"/>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                   <img th:src="${imageHost} + ${card.editions[0].image_url}" width="223" height="311" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
     </i>
 </div>

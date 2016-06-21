@@ -4,3 +4,37 @@
     background-position: -30px -100px;
     background-repeat: no-repeat;
 }
+
+.container-fluid .col-md-2 a:link, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.panel-heading {
+    padding: 10px 15px;
+}
+.panel-body {
+    padding: 15px 15px;
+}
+
+.panel-body .col-md-6 {
+    padding: 0px;
+}
+
+.panel-body .col-md-6 .row {
+    padding: 3px 0px;
+}
+
+hr {
+    margin: 10px 0px;
+}
+
+.col-md-6.image {
+    text-align: center;
+}
+
+.col-md-6.image img {
+    width: 100%;
+    max-width: 350px;
+    padding: 30px 15px;
+}

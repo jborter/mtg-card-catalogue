@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,6 +23,7 @@ import java.util.stream.IntStream;
 public class CardsController {
 
     private static final String CARD_TEMPLATE = "cards";
+    private static final String DETAILS_TEMPLATE = "details";
     private static final String[] SORT_CARDS_BY = new String[] {"name"};
     private static final int OFFER_PAGES = 10;
 
@@ -43,6 +45,13 @@ public class CardsController {
         return CARD_TEMPLATE;
     }
 
+    @RequestMapping("/mtg/{cardId}")
+    public String getCards(@PathVariable("cardId") String cardId, Model model) {
+        Card card = cardRepository.findOne(cardId);
+        model.addAttribute("card", card);
+        model.addAttribute("imageHost", imageHost);
+        return DETAILS_TEMPLATE;
+    }
 
     private MtgPage[] createPages(Page page) {
         List<MtgPage> mtgPages = new ArrayList<>();
