@@ -9,6 +9,16 @@
     margin-top: 70px;
 }
 
+.pagination-collapse {
+    margin: 0;
+}
+
+.pagination-row {
+    margin-bottom: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 .container-fluid .col-md-2 a:link, a:visited, a:hover, a:active {
     text-decoration: none;
     color: inherit;

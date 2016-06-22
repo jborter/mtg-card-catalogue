@@ -21,10 +21,28 @@
     </div>
 </nav>
 <div class="container-fluid top-container">
-    <div class="row" align="center">
-        <ul class="pagination">
-            <li th:each="page : ${pages}" th:class="${page.number==activePage}? active"><a th:href="${page.href}" th:text="${page.number}" /></li>
-        </ul>
+    <div class="row pagination-row">
+        <div class="col-md-3">
+            <form action="#" th:action="@{/mtg}" method="post">
+                <div class="input-group">
+                    <input type="text" th:value="${searchBy}" name="s" class="form-control" placeholder="Search for..."/>
+                  <span class="input-group-btn">
+                    <input class="form-control" type="submit" value="Go!"/>
+                  </span>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8 col-md-offset-1">
+            <ul th:if="${#lists.size(pages) > 1}" class="pagination pagination-collapse pull-right">
+                <li th:each="page : ${pages}" th:class="${page.number==activePage}? active">
+                    <a th:href="${page.href}">
+                        <span th:if="${!page.jumpLeftPage and !page.jumpRightPage}" th:text="${page.number + 1}"/>
+                        <span th:if="${page.jumpLeftPage}" aria-hidden="true">&laquo;</span>
+                        <span th:if="${page.jumpRightPage}" aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <div class="container-fluid">
