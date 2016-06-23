@@ -12,16 +12,24 @@ import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PreDestroy;
 import java.io.IOException;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Component
 public class PriceUpdateReceiver {
 
-    private final static String QUEUE = "mtg-price-update";
+    private final static String TOPIC = "topic-mtg-price-updates";
+    private final static String QUEUE = "queue-mtg-price-update-mtg-card-catalogue";
+    private final static String ROUTING_KEY = "card.price.update";
+
+    @Autowired
+    private ConfigurableApplicationContext context;
 
     @Autowired
     private CardRepository cardRepository;
@@ -37,12 +45,12 @@ public class PriceUpdateReceiver {
 
     @Bean
     TopicExchange exchange() {
-        return new TopicExchange("mtg-exchange");
+        return new TopicExchange(TOPIC);
     }
 
     @Bean
     Binding binding(Queue queue, TopicExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with(QUEUE);
+        return BindingBuilder.bind(queue).to(exchange).with(ROUTING_KEY);
     }
 
     @Bean
@@ -61,12 +69,12 @@ public class PriceUpdateReceiver {
     }
 
     public void receiveMessage(String jsonString) {
-        Logger.getGlobal().info("Received <" + jsonString + ">");
+        Logger.getGlobal().info("Received JSON object: " + jsonString);
         try {
             PriceUpdate priceUpdate = getPriceUpdate(jsonString);
             updateCard(priceUpdate);
         } catch (IOException e) {
-            throw new IllegalArgumentException("Non valid JSON file " + jsonString);
+            Logger.getGlobal().log(Level.WARNING, "Could not process price update: " + e);
         }
     }
 
@@ -87,5 +95,10 @@ public class PriceUpdateReceiver {
     private PriceUpdate getPriceUpdate(String jsonString) throws java.io.IOException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readValue(jsonString, PriceUpdate.class);
+    }
+
+    @PreDestroy
+    public void cleanUp() {
+        context.close();
     }
 }
