@@ -34,7 +34,7 @@ public class CardsController {
     @Value("${mtg.imageHost}")
     private String imageHost;
 
-    @RequestMapping("/mtg")
+    @RequestMapping("/")
     public String getCards(@RequestParam(value="page", required=false, defaultValue="0") int page,
                            @RequestParam(value="size", required=false, defaultValue="20") int size,
                            @RequestParam(value="s", required=false, defaultValue="") String searchBy,
@@ -56,7 +56,7 @@ public class CardsController {
         }
     }
 
-    @RequestMapping("/mtg/{cardId}")
+    @RequestMapping("/{cardId}")
     public String getCards(@PathVariable("cardId") String cardId, Model model) {
         Card card = cardRepository.findOne(cardId);
         model.addAttribute("card", card);
