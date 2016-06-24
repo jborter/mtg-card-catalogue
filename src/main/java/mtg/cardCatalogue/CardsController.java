@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -59,6 +60,7 @@ public class CardsController {
     @RequestMapping("/{cardId}")
     public String getCards(@PathVariable("cardId") String cardId, Model model) {
         Card card = cardRepository.findOne(cardId);
+        Arrays.sort(card.getEditions());
         model.addAttribute("card", card);
         model.addAttribute("imageHost", imageHost);
         return DETAILS_TEMPLATE;

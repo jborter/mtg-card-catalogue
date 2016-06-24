@@ -24,6 +24,11 @@
     color: inherit;
 }
 
+.nav-pills li a {
+    padding: 3px 10px;
+    font-weight: normal;
+}
+
 .panel-heading {
     padding: 10px 15px;
 }
@@ -35,8 +40,9 @@
     padding: 0px;
 }
 
-.panel-body .col-md-6 .row {
-    padding: 3px 0px;
+.card-details .row .col-md-3, .card-details .row .col-md-4 {
+    padding: 3px 15px;
+    font-weight: bold;
 }
 
 hr {
@@ -49,6 +55,6 @@ hr {
 
 .col-md-6.image img {
     width: 100%;
-    max-width: 400px;
-    padding: 30px 15px;
+    max-width: 300px;
+    padding: 5px 15px;
 }

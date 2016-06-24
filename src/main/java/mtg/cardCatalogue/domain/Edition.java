@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 /**
  * Created by jbo on 31.05.2016.
  */
-public class Edition {
+public class Edition implements Comparable<Edition> {
 
     // edition properties
     @Id
@@ -142,5 +142,10 @@ public class Edition {
     @Override
     public String toString() {
         return String.format("Edition[id=%s, name=%s, price=%s]", set_id, set, price);
+    }
+
+    @Override
+    public int compareTo(Edition e) {
+        return this.set.compareTo(e.set);
     }
 }
